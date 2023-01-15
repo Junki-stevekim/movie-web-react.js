@@ -27,15 +27,33 @@
     
     
      function App(){
-        const [counter,setCounter]= React.useState(0);
-        const onClick = () => {
-            setCounter(counter + 1);
+        const [minutes, setMinutes] = React.useState();
+        const onChange = (event) => {
+            setMinutes(event.target.value); // input value를 받아온다.
         };
+        const reset =() => setMinutes(0); // 값을 리셋해준다.
         return (
         <div>
-            <h3>Total clicks: {counter}</h3>    
-        <button onClick={onClick}>Click me!</button>
-        </div> 
+            <h1 className="hi">Super Converter</h1>
+            <div>
+            <label htmlFor="minutes">Minutes :</label>    
+            <input  
+            value={minutes}
+            id="minutes" 
+            placeholder="Minutes"
+             type="number" 
+             onChange={onChange}/>
+             </div>
+             
+             <div>
+            <label htmlFor="hours">Hours :</label>
+            <input value={Math.floor(minutes / 60)}  //분을 시간으로 나눌땐 60으로 나눠주면된다.
+            id="hours" 
+            placeholder="Hours" 
+             type="number" disabled/>
+            </div>
+            <button onClick={reset}>Reset</button>
+            </div> 
      );
      }
      
