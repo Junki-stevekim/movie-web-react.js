@@ -24,43 +24,25 @@
         onClick : () => console.log("im clicked"),
         style:{backgroundColor:"tomato"},
     },"Click Me!"); */
-    
-    
+    function Btn({banana,onClick}){
+        return(
+        <button onClick={onClick} style={{
+            backgroundColor:"tomato",
+            border : 0,
+            color:"white",
+            borderRadius : "10px",
+            padding: "10px 10px",
+        }}>{banana}</button>
+        
+        );
+    }
      function App(){
-        const [amount, setAmount] = React.useState();
-        const [inverted, setInverted] = React.useState(false);
-        const onChange = (event) => {
-            setAmount(event.target.value); // input value를 받아온다.
-        };
-        const reset =() => setAmount(0); // 값을 리셋해준다.
-        const onInvert = () => {
-            reset();
-            setInverted((current) => !current);
-         } // 현재값을 받아서 반대값을 리턴
+        const [value,setValue] = React.useState("Save Changes");
+        const changeValue = () => setValue("Revert Changes");
         return (
         <div>
-            <h1 className="hi">Super Converter</h1>
-            <div>
-            <label htmlFor="minutes">Minutes :</label>    
-            <input  
-            value={inverted ?amount * 60 :amount}
-            id="minutes" 
-            placeholder="Minutes"
-             type="number" 
-             onChange={onChange}
-             disabled={inverted}/>
-             </div>
-             
-             <div>
-            <label htmlFor="hours">Hours :</label>
-            <input value={inverted ? amount : Math.round(amount / 60)}  //분을 시간으로 나눌땐 60으로 나눠주면된다.
-            id="hours" 
-            placeholder="Hours" 
-             type="number" disabled={!inverted}
-             onChange={onChange} />
-            </div>
-            <button onClick={reset}>Reset</button>
-            <button onClick={onInvert}>{inverted ? "Turn Back" : "Invert"}</button>
+           <Btn banana={value} onClick={changeValue} />
+           <Btn banana="Send Me!" />
             </div> 
      );
      }
