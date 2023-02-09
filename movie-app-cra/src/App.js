@@ -1,12 +1,21 @@
-import Button from "./Button";
-import styles from "./Button.module.css";
+import {useState} from "react";
+
 
 function App() {
+  const [toDo, setTodo]=useState("");
+  const onChange = (event) => setTodo(event.target.value);
+  const onSubmit =(event) =>{
+    event.preventDefault();
+  };
   return (
-    <div className={styles.container}>
-    <h1>Welcome back!</h1>
-    <Button text={"Continue"} /> 
-    <Button banana={"Save me!"} />
+    <div>
+    <form onSubmit={onSubmit}> 
+    <input 
+    onChange={onChange} 
+    value={toDo} type="text"
+     placeholder="Write your to do..." />
+     <button>Add To Do</button>
+    </form>
     </div>
   );
 }
